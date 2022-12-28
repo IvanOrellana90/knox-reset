@@ -2,7 +2,7 @@ import { useAuth } from "../content/AuthContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "./Footer";
-import { restartClient } from "../lib/knox-utils";
+import { sendMessageBotRestart } from "../lib/slack-api";
 
 export function Home() {
   const [tag, setTag] = useState();
@@ -15,7 +15,7 @@ export function Home() {
     navigate("/login");
   };
   const handleRestart = async ({ target: { value } }) => {
-    restartClient("Prueba", ["Ivan"]);
+    await sendMessageBotRestart("Ivan");
   };
 
   if (loading) return <h1>Loading</h1>;
@@ -25,9 +25,7 @@ export function Home() {
       <div className="container px-6 py-12 h-full">
         <h1>Welcome {user.email}</h1>
         <button onClick={handleLogout}>LogOut</button>
-        <button onClick={handleRestart} value="Ivan">
-          Restart
-        </button>
+        <button onClick={handleRestart}>Restart</button>
       </div>
       <Footer />
     </section>
