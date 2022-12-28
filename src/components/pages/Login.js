@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuth } from "../content/AuthContext";
+import { useAuth } from "../../content/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "./Alert";
+import { Alert } from "../layouts/Alert";
 
 export function Login() {
   const [user, setUser] = useState({

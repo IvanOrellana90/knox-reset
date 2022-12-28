@@ -6,14 +6,14 @@ export async function sendMessageBotRestart(tag) {
 
   try {
     const response = await fetch(
-      "https://hooks.slack.com/services/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",
+      "https://hooks.slack.com/services/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",
       {
         method: "POST",
         mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text: "<@U04GRDLG55Y> World!" }),
+        body: JSON.stringify({ text: "<@U01TNL05BE2> knox restart " + tag }),
       }
     );
     if (response.ok) {
