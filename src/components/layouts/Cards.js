@@ -78,7 +78,44 @@ export default function Table({ devices }) {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200"></tbody>
+              <tbody className="divide-y divide-gray-200">
+                {devices.deviceList.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                        {item.tags.map((item, index) => {
+                          return (
+                            <span
+                              key={index}
+                              class="inline-block bg-gray-200 rounded-full px-1 py-1 text-xs text-gray-700 mr-1 mb-1"
+                            >
+                              {item}
+                            </span>
+                          );
+                        })}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-800 text-right whitespace-nowrap">
+                        {new Intl.DateTimeFormat("es-ES", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          second: "2-digit",
+                        }).format(item.lastChange)}
+                      </td>
+                      <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                        <button
+                          onClick={handleRestart}
+                          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                        >
+                          Button
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
           </div>
         </div>

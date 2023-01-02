@@ -6,7 +6,7 @@ export async function sendMessageBotRestart(tag) {
 
   try {
     const response = await fetch(
-      "https://hooks.slack.com/services/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",
+      "https://hooks.slack.com/services/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",
       {
         method: "POST",
         mode: "no-cors",
