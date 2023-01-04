@@ -1,22 +1,17 @@
 import { useAuth } from "../../content/AuthContext";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Table from "../layouts/Table";
+import Cards from "../layouts/Cards";
 import { db } from "../../db/firebase";
 import { addDoc, collection } from "firebase/firestore";
-import softys from "../../assets/softys.json";
+import softys from "../../assets/JSON/softys.json";
 import { findUser } from "../../db/users";
 
+const tagRegExp = /\b(TOR)\d{1,2}(E|S)((-)\w{1,3}){1,2}\b/g;
+
 export function Home() {
-  const [devices, setDevices] = useState(softys.deviceList);
+  const [devices, setDevices] = useState([]);
 
-  const { user, logout, loading } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    await logout();
-    navigate("/login");
-  };
+  const { user, loading } = useAuth();
 
   const addSoftys = async () => {
     await addDoc(collection(db, "Devices"), {
@@ -26,14 +21,21 @@ export function Home() {
 
   const filterDevices = async (email) => {
     const res = await findUser(email);
-    const filter = devices.filter((device) =>
-      device.tags.includes(res.facility.toUpperCase().trim())
+    const filter = softys.deviceList.filter(
+      (device) =>
+        device.tags.includes(res.facility.toUpperCase().trim()) &&
+        device.tags.some((tag) => tag.match(tagRegExp))
     );
     return filter;
   };
 
+  const fetchData = async () => {
+    const data = await filterDevices(user.email);
+    setDevices(data);
+  };
+
   useEffect(() => {
-    setDevices(filterDevices(user.email));
+    fetchData();
   }, []);
 
   if (loading) return <h1>Loading</h1>;
@@ -42,11 +44,7 @@ export function Home() {
     <section>
       <main>
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-          <div className="container px-6 py-12 h-full">
-            <h1>Welcome {user.email}</h1>
-            <button onClick={handleLogout}>LogOut</button>
-          </div>
-          <Table devices={devices} />
+          <Cards devices={devices} />
         </div>
       </main>
     </section>

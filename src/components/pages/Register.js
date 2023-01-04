@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useAuth } from "../../content/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "flowbite-react";
 
 export function Register() {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    facility: "Puente Alto",
+    facility: "Talagante",
   });
   const [error, setError] = useState();
   const { signup } = useAuth();
@@ -35,7 +36,15 @@ export function Register() {
   return (
     <section className="h-screen">
       <div className="container px-12 py-12 h-full">
-        {error && <p>{error}</p>}
+        {error && (
+          <Alert color="failure">
+            <span>
+              <span className="font-medium">OPS! Ocurrió un problema</span>
+              <hr />
+              {error}
+            </span>
+          </Alert>
+        )}
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <form className="w-full max-w-lg" onSubmit={handleSubmit}>
             <div className="flex flex-wrap -mx-3 mb-6">
@@ -89,8 +98,11 @@ export function Register() {
                     id="facility"
                     onChange={handleChange}
                   >
-                    <option>Puente Alto</option>
-                    <option>Talagante</option>
+                    <option value={"TALAGANTE"}>Talagante</option>
+                    <option value={"MANUEL RODRIGUEZ"}>Manuel Rodriguez</option>
+                    <option value={"LO ECHEVERS"}>Lo Echevers</option>
+                    <option value={"EYZAGUIRRE"}>Eyzaguirre</option>
+                    <option value={"DOMEYKO"}>Domeyko</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg

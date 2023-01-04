@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../content/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "../layouts/Alert";
+import { Alert } from "flowbite-react";
 
 export function Login() {
   const [user, setUser] = useState({
@@ -40,7 +40,15 @@ export function Login() {
             />
           </div>
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-            {error && <Alert message={error} />}
+            {error && (
+              <Alert color="failure">
+                <span>
+                  <span className="font-medium">OPS! Ocurrió un problema</span>
+                  <hr />
+                  {error}
+                </span>
+              </Alert>
+            )}
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <label htmlFor="email">Email</label>

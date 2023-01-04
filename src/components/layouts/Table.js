@@ -2,7 +2,7 @@ import { sendMessageBotRestart } from "../../lib/slack-api";
 
 export default function Table({ devices }) {
   const handleRestart = async ({ target: { value } }) => {
-    await sendMessageBotRestart("Ivan");
+    await sendMessageBotRestart(value);
   };
 
   return (
@@ -36,7 +36,7 @@ export default function Table({ devices }) {
         </div>
 
         <div className="p-1.5 w-full inline-block align-middle">
-          <div className="overflow-hidden border rounded-lg">
+          <div className="overflow-hidden border rounded-lg ">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -67,12 +67,6 @@ export default function Table({ devices }) {
                     className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
                   >
                     Última modificación
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
-                  >
-                    Delete
                   </th>
                 </tr>
               </thead>
@@ -106,8 +100,10 @@ export default function Table({ devices }) {
                         <button
                           onClick={handleRestart}
                           className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                          value={item.deviceUId}
+                          key={index}
                         >
-                          Button
+                          Reiniciar
                         </button>
                       </td>
                     </tr>

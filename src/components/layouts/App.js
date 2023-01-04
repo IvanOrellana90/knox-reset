@@ -6,6 +6,7 @@ import { ProtectedRoute } from "../ProtectedRoute";
 import { Register } from "../pages/Register";
 import { AuthProvider } from "../../content/AuthContext";
 import { Navbar } from "./Navbar";
+import { Footer } from "flowbite-react";
 
 function App() {
   useEffect(() => {
@@ -19,7 +20,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute register={false}>
               <div className="min-h-full">
                 <Navbar />
                 <Home />
@@ -27,8 +28,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/register"
+          element={
+            <ProtectedRoute register={true}>
+              <Register />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
       </Routes>
     </AuthProvider>
   );
