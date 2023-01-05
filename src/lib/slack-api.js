@@ -10,7 +10,7 @@ export async function sendMessageBotRestart(tag) {
       },
       body: JSON.stringify({ text: "<@U01TNL05BE2> knox restart " + tag }),
     });
-    if (response.ok) {
+    if (response.ok || response.status === 0) {
       return "Todo bien con el reinicio";
     } else {
       return "Respuesta de red OK pero respuesta de HTTP no OK";

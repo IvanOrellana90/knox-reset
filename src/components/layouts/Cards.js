@@ -21,11 +21,15 @@ export default function Cards({ devices, facility }) {
       <div className="overflow-x-auto">
         <div className="p-1.5 w-full inline-block align-middle">
           {response && (
-            <Alert color="info">
+            <Alert color="success">
               <span>
-                <span className="font-medium">Mensaje de info! </span>
+                <span className="font-medium">
+                  El reinicio se ha enviado con éxito!{" "}
+                </span>
                 <hr />
-                {response}
+                Revise el dispositivo para comprobar el reinicio. Es importante
+                tener en consideración que el reinicio puede demorar unos
+                segundos según la conexión del dispositivo a internet.
               </span>
             </Alert>
           )}
