@@ -35,7 +35,7 @@ export function Register() {
 
   return (
     <section className="h-screen">
-      <div className="container px-12 py-12 h-full">
+      <div className="px-12 py-12 h-full">
         {error && (
           <Alert color="failure">
             <span>

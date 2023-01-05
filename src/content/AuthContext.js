@@ -21,9 +21,9 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const signup = async (user) => {
-    console.log(user);
     return createUserWithEmailAndPassword(auth, user.email, user.password).then(
       () => {
+        user.password = "";
         return setDoc(doc(db, "Users", user.email), user);
       }
     );
