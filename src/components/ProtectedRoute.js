@@ -1,6 +1,8 @@
 import { useAuth } from "../content/AuthContext";
 import { Navigate } from "react-router-dom";
 
+const emailRegExp = /(@interkambio.cl|@ksec.cl)/g;
+
 export function ProtectedRoute({ register, children }) {
   const { user, loading } = useAuth();
 
@@ -8,7 +10,7 @@ export function ProtectedRoute({ register, children }) {
 
   if (!user) return <Navigate to="/login" />;
 
-  if (register && user.email != "iorellana@interkambio.cl")
+  if (register && !user.email.match(emailRegExp))
     return <Navigate to="/login" />;
 
   return <>{children}</>;
