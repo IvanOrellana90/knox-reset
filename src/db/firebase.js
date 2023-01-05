@@ -9,13 +9,13 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyB8iO_4B_0hc-ToRQbNwQjARSxf46v6H7I",
-  authDomain: "knox-restart-auth.firebaseapp.com",
-  projectId: "knox-restart-auth",
-  storageBucket: "knox-restart-auth.appspot.com",
-  messagingSenderId: "149338005670",
-  appId: "1:149338005670:web:d0cc6e94f04a97390a1467",
-  measurementId: "G-8T5KNN2ENR",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: "knox-restart.firebaseapp.com",
+  projectId: "knox-restart",
+  storageBucket: "knox-restart.appspot.com",
+  messagingSenderId: "193695719620",
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: "G-063V0LZZ5C",
 };
 
 // Initialize Firebase
